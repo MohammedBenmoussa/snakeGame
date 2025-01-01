@@ -6,6 +6,7 @@ import { SnakeIcon } from './components/StartScreen';
 import { motion, AnimatePresence } from 'framer-motion';
 import Celebration from './components/Celebration';
 import { useSoundEffects } from './hooks/useSoundEffects';
+import TouchControls from './components/TouchControls';
 
 // Importation dynamique des composants
 const GameBoard = React.lazy(() => import('./components/GameBoard'));
@@ -219,6 +220,7 @@ function App() {
                       snake={snake} 
                       food={food} 
                       showCelebration={showCelebration}
+                      onDirectionChange={handleDirectionButton}
                     />
                   </div>
                 </div>
@@ -271,6 +273,9 @@ function App() {
             </div>
           </main>
         </div>
+
+        {/* TouchControls en dehors du layout principal */}
+        <TouchControls />
 
         {/* Bouton Paramètres avec flou conditionnel */}
         <motion.button

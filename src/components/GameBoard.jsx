@@ -4,12 +4,16 @@ import { useTheme } from '../contexts/ThemeContext';
 import Snake from './Snake';
 import Food from './Food';
 import Celebration from './Celebration';
+import { useSwipeControls } from '../hooks/useSwipeControls';
 
-const GameBoard = ({ snake, food, showCelebration }) => {
+const GameBoard = ({ snake, food, showCelebration, onDirectionChange }) => {
   const { isDark } = useTheme();
+  
+  // Utiliser le hook de contrôle tactile
+  useSwipeControls(onDirectionChange);
 
   return (
-    <div className="relative">
+    <div className="relative touch-none select-none"> {/* Ajout de select-none */}
       {/* Célébration en arrière-plan du GameBoard */}
       <AnimatePresence>
         {showCelebration && <Celebration />}
@@ -26,18 +30,19 @@ const GameBoard = ({ snake, food, showCelebration }) => {
           border ${isDark ? 'border-[#2A3347]' : 'border-gray-300'}
           ${isDark 
             ? 'shadow-[0_0_50px_-12px_rgba(16,185,129,0.15)]' 
-            : 'shadow-[0_0_50px_-12px_rgba(107,114,128,0.25)]'}`}
+            : 'shadow-[0_0_50px_-12px_rgba(107,114,128,0.25)]'}
+          sm:hover:shadow-2xl transition-shadow duration-300`}
       >
         {/* Grille */}
-        <div className="absolute inset-0">
-          <AnimatePresence>
+        <div className="absolute inset-0 p-[1px]"> {/* Ajout d'un padding minimal */}
+          <div className="relative w-full h-full">
             {Array.from({ length: 400 }).map((_, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: i * 0.001 }}
-                className={`absolute w-[28px] h-[28px] border
+                className={`absolute w-[calc(100%/20-1px)] h-[calc(100%/20-1px)] border
                   ${isDark 
                     ? 'border-[#1F2B45]/50' 
                     : 'border-gray-200'}
@@ -49,15 +54,23 @@ const GameBoard = ({ snake, food, showCelebration }) => {
                       ? 'bg-[#1A2337]/10' 
                       : 'bg-gray-100/50'}`}
                 style={{
-                  left: (i % 20) * 30,
-                  top: Math.floor(i / 20) * 30,
+                  left: `${(i % 20) * (100 / 20)}%`,
+                  top: `${Math.floor(i / 20) * (100 / 20)}%`,
                 }}
               />
             ))}
-          </AnimatePresence>
+          </div>
         </div>
 
-        {/* Effet de néon subtil */}
+        {/* Serpent et Nourriture avec position relative */}
+        <div className="absolute inset-0 p-[1px]">
+          <div className="relative w-full h-full">
+            <Snake segments={snake} isDark={isDark} />
+            <Food position={food} isDark={isDark} />
+          </div>
+        </div>
+
+        {/* Effets visuels */}
         <div className="absolute inset-0 pointer-events-none">
           <div className={`absolute inset-0 
             ${isDark 
@@ -66,13 +79,6 @@ const GameBoard = ({ snake, food, showCelebration }) => {
           />
         </div>
 
-        {/* Serpent et Nourriture */}
-        <div className="relative z-10">
-          <Snake segments={snake} isDark={isDark} />
-          <Food position={food} isDark={isDark} />
-        </div>
-
-        {/* Effet de brillance supplémentaire */}
         <div className={`absolute inset-0 pointer-events-none
           ${isDark 
             ? 'bg-gradient-to-t from-black/10 via-transparent to-white/5' 

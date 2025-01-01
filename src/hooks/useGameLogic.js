@@ -46,7 +46,23 @@ export const useGameLogic = () => {
           y: (head.y + lastDirection.current.y + GRID_SIZE) % GRID_SIZE
         };
 
-        // Vérifier le danger avant de bouger
+        if (Math.abs(head.x - newHead.x) > 1 || Math.abs(head.y - newHead.y) > 1) {
+          const wrappedSegments = currentSnake.map(segment => ({
+            x: (segment.x + GRID_SIZE) % GRID_SIZE,
+            y: (segment.y + GRID_SIZE) % GRID_SIZE
+          }));
+
+          if (checkCollision(newHead, wrappedSegments)) {
+            playGameOverSound();
+            setGameOver(true);
+            return currentSnake;
+          }
+        } else if (checkCollision(newHead, currentSnake)) {
+          playGameOverSound();
+          setGameOver(true);
+          return currentSnake;
+        }
+
         if (checkDanger(newHead, currentSnake)) {
           playDangerSound();
         }
@@ -56,12 +72,6 @@ export const useGameLogic = () => {
           setScore(prevScore => prevScore + 1);
           setFood(generateFood(currentSnake, GRID_SIZE));
           return [newHead, ...currentSnake];
-        }
-
-        if (checkCollision(newHead, currentSnake)) {
-          playGameOverSound();
-          setGameOver(true);
-          return currentSnake;
         }
 
         return [newHead, ...currentSnake.slice(0, -1)];
