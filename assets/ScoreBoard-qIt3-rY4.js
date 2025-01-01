@@ -1,4 +1,4 @@
-import{j as e,u as l,m as o}from"./index-ColWQp2y.js";const i=({label:r,value:a,isHighScore:s})=>{const{isDark:t}=l();return e.jsxs(o.div,{initial:{scale:.9,opacity:0},animate:{scale:1,opacity:1},className:`relative overflow-hidden rounded-xl p-6
+import{j as e,u as l,m as o}from"./index-CNWlXhrF.js";const i=({label:r,value:a,isHighScore:s})=>{const{isDark:t}=l();return e.jsxs(o.div,{initial:{scale:.9,opacity:0},animate:{scale:1,opacity:1},className:`relative overflow-hidden rounded-xl p-6
         ${t?"bg-gradient-to-br from-gray-800/80 to-gray-900/80":"bg-gradient-to-br from-gray-100 to-gray-200/80"}
         backdrop-blur-md border
         ${t?"border-gray-700/50":"border-gray-300"}
