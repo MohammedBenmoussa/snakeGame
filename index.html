@@ -1,23 +1,12 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="dark">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Snake Game</title>
-    <script>
-      // Applique le thème sauvegardé ou la préférence système immédiatement
-      if (
-        localStorage.theme === 'dark' || 
-        (!('theme' in localStorage) && 
-          window.matchMedia('(prefers-color-scheme: dark)').matches)
-      ) {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
-    </script>
-    <script type="module" crossorigin src="/snakeGame/assets/index-H83BEudG.js"></script>
-    <link rel="stylesheet" crossorigin href="/snakeGame/assets/index-Dp-4lCjZ.css">
+    <script type="module" crossorigin src="/snakeGame/assets/index-B7KgnwUA.js"></script>
+    <link rel="stylesheet" crossorigin href="/snakeGame/assets/index-C4V6TMDs.css">
   </head>
   <body>
     <div id="root"></div>
