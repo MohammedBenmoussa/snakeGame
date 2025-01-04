@@ -1,4 +1,4 @@
-import{r as m,j as e,m as l,D as u,u as g,A as x,C as v}from"./index-DoXy2qql.js";const f=({segments:r,isDark:t})=>{const s=m.useMemo(()=>r.map((o,a)=>{if(a===0)return"head";const d=r[a-1],n=o,i=d.x-n.x,c=d.y-n.y;return Math.abs(i)>1||Math.abs(c)>1?"edge":i!==0&&c!==0?"turn":"straight"}),[r]);return e.jsx(e.Fragment,{children:r.map((o,a)=>e.jsxs(l.div,{className:`absolute w-[calc(100%/20-1px)] h-[calc(100%/20-1px)]
+import{r as m,j as e,m as l,D as u,u as g,A as x,C as v}from"./index-yq8GTnr6.js";const f=({segments:r,isDark:t})=>{const s=m.useMemo(()=>r.map((o,a)=>{if(a===0)return"head";const d=r[a-1],n=o,i=d.x-n.x,c=d.y-n.y;return Math.abs(i)>1||Math.abs(c)>1?"edge":i!==0&&c!==0?"turn":"straight"}),[r]);return e.jsx(e.Fragment,{children:r.map((o,a)=>e.jsxs(l.div,{className:`absolute w-[calc(100%/20-1px)] h-[calc(100%/20-1px)]
             rounded-lg
             ${t?"bg-emerald-500 shadow-emerald-500/50":"bg-emerald-400 shadow-emerald-400/50"}
             shadow-lg

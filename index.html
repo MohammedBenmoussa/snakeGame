@@ -2,7 +2,11 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#10B981" />
+    <meta name="description" content="Un jeu de serpent moderne avec des animations fluides" />
+    <link rel="manifest" href="/snakeGame/manifest.json" />
+    <link rel="apple-touch-icon" href="/snakeGame/icons/icon-192x192.png" />
     <title>Snake Game</title>
     <script>
       // Applique le thème sauvegardé ou la préférence système immédiatement
@@ -16,10 +20,23 @@
         document.documentElement.classList.remove('dark');
       }
     </script>
-    <script type="module" crossorigin src="/snakeGame/assets/index-DoXy2qql.js"></script>
-    <link rel="stylesheet" crossorigin href="/snakeGame/assets/index-DR5ZWxu_.css">
+    <script type="module" crossorigin src="/snakeGame/assets/index-yq8GTnr6.js"></script>
+    <link rel="stylesheet" crossorigin href="/snakeGame/assets/index-Cdbj7fs8.css">
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/snakeGame/sw.js')
+            .then(registration => {
+              console.log('SW registered:', registration);
+            })
+            .catch(error => {
+              console.log('SW registration failed:', error);
+            });
+        });
+      }
+    </script>
   </body>
 </html> 
